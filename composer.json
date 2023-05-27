@@ -1,0 +1,24 @@
+{
+    "name": "azazelm3dj3d/jinx",
+    "description": "Jinx: The Unlucky Framework",
+    "keywords": ["jinx", "framework"],
+    "type": "library",
+    "license": "BSD-2-Clause",
+    "homepage": "https://azazelm3dj3d.com",
+    "support": {
+        "issues": "https://github.com/azazelm3dj3d/jinx/issues",
+        "source": "https://github.com/azazelm3dj3d/jinx"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jinx\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "azazelm3dj3d",
+            "email": "trevor@azazelm3dj3d.com"
+        }
+    ],
+    "require": {}
+}

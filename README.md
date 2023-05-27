@@ -1,2 +1,1 @@
-# jinx
-Jinx: The Unlucky Framework
+# Jinx: The Unlucky Framework
