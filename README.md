@@ -1,7 +1,7 @@
 # Jinx: The Unlucky Framework
 The Jinx MVC Framework is a mini PHP framework created to provide a simple library for building websites.
 
-This framework was created to build custom CTF websites, local development and testing, local vulnerability testing, and more. This framework is not too unique yet, but available for use in most projects.
+This framework was created to build custom CTF websites, local development and testing, local vulnerability testing, and more. This framework is not too unique yet, but available for use in most projects. Jinx is intentially minimal to allow for full cutomizable freedom on the user's end. This means all Controllers, Models, layouts, and more will need to be created by the user. The example website, [powder](https://github.com/azazelm3dj3d/powder), showcases the "bare minimum" to utitlize all available components currently available under Jinx.
 
 You can get started by running the following command using `composer`:
 

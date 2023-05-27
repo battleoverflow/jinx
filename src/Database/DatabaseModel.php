@@ -38,11 +38,11 @@ abstract class DatabaseModel extends Model
         return true;
     }
 
-    // $user = [email => email@email.com, firstname => John]
-    public static function findUser($where)
+    // $user_data = [email => email@email.com, firstname => John]
+    public static function findUser($user_data)
     {
         $table_name = static::tableName();
-        $attributes = array_keys($where);
+        $attributes = array_keys($user_data);
 
         // Appends "AND" to all db values associated with the user we need
         $user_info = implode("AND", array_map(fn($attr) => "$attr = :$attr", $attributes));
@@ -50,7 +50,7 @@ abstract class DatabaseModel extends Model
         // Extracts user info from the db
         $statement = self::prepare("SELECT * FROM $table_name WHERE $user_info");
 
-        foreach ($where as $key => $item) {
+        foreach ($user_data as $key => $item) {
             $statement->bindValue(":$key", $item);
         }
 
