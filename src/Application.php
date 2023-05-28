@@ -88,15 +88,20 @@ class Application
         return !self::$jinx->user;
     }
 
-    public function run()
+    public function run(string $err_view = "_error")
     {
+        /*
+            The primary function for the Jinx Framework
+
+            @param $err_view - Provide a custom error error view
+        */
         try {
             echo $this->router->resolve();
         } catch (\Exception $err) {
             $this->response->setStatusCode($err->getCode());
 
             // Render error page
-            echo $this->view->renderView('_error', [
+            echo $this->view->renderView($err_view, [
                 'exception' => $err
             ]);
         }

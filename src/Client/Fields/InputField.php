@@ -20,11 +20,13 @@ class InputField extends BaseField
     public const TYPE_NUM = 'number';
 
     public string $type;
+    public string $class;
 
-    public function __construct(Model $model, string $attribute)
+    public function __construct(Model $model, string $attribute, string $class)
     {
         $this->type = self::TYPE_DEFAULT;
-        parent::__construct($model, $attribute);
+        $this->class = '';
+        parent::__construct($model, $attribute, $class);
     }
 
     // Assigns the input type for the password
@@ -36,11 +38,18 @@ class InputField extends BaseField
 
     public function renderContent(): string
     {
-        return sprintf('<input type="%s" name="%s" placeholder="%s" value="%s">',
+        return sprintf('
+        <input type="%s" name="%s" placeholder="%s" value="%s" class="%s">
+        <div style="color: red;">
+            %s
+        </div>
+        ',
             $this->type, // Input (type)
             $this->attribute, // Input (name)
-            $this->attribute, // Input (placeholder)
+            '', // Input (placeholder)
             $this->model->{$this->attribute}, // Input (value)
+            $this->class, // Input (class)
+            $this->model->getFirstError($this->attribute), // Error message popup
         );
     }
 }

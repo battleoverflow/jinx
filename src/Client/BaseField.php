@@ -14,32 +14,20 @@ abstract class BaseField
 {
     public Model $model;
     public string $attribute;
+    public string $class;
 
-    public function __construct(Model $model, string $attribute)
+    public function __construct(Model $model, string $attribute, $class)
     {
         $this->model = $model;
         $this->attribute = $attribute;
+        $this->class = $class;
     }
 
     abstract public function renderContent(): string;
 
     public function __toString()
     {
-        return sprintf('
-            <div>
-                <label for="%s">%s</label>
-                %s
-            </div>
-            
-            <div>
-                %s
-            </div>
-        ',
-        $this->attribute, // Label (for)
-        $this->model->getLabel($this->attribute), // Label
-        $this->renderContent(), // Render client content
-        $this->model->getFirstError($this->attribute) // Error message popup
-        );
+        return sprintf('%s', $this->renderContent());
     }
 }
 
