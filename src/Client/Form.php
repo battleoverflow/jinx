@@ -10,6 +10,7 @@ namespace Jinx\Client;
 
 use Jinx\Model;
 use Jinx\Client\Fields\InputField;
+use Jinx\Client\Fields\LabelField;
 
 class Form
 {
@@ -25,9 +26,15 @@ class Form
         echo '</form>';
     }
 
-    public function field(Model $model, $attribute)
+    public function field(Model $model, $attribute, $class, $field)
     {
-        return new InputField($model, $attribute);
+        switch ($field) {
+            case 'input':
+                return new InputField($model, $attribute, $class);
+            case 'label':
+                return new LabelField($model, $attribute, $class);
+        }
+
     }
 }
 
