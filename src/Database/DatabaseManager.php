@@ -98,10 +98,10 @@ class DatabaseManager
 
             $instance = new $filename();
             
-            $log->terminalLog("Applying migration $migration");
+            $log->log("Applying migration $migration", "terminal");
             $instance->up();
             
-            $log->terminalLog("Applied migration $migration");
+            $log->log("Applied migration $migration", "terminal");
             $new_migrations[] = $migration;
         }
 
@@ -109,7 +109,7 @@ class DatabaseManager
         if (!empty($new_migrations)) {
             $this->insertMigrations($new_migrations);
         } else {
-            $log->terminalLog("All migrations are complete");
+            $log->log("All migrations are complete", "terminal");
         }
     }
 

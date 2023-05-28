@@ -44,7 +44,7 @@ class Application
             // Pass the info to the database server from the 'db' key
             $this->db = new DatabaseManager($db_config['db']);
         } catch (\Exception $err) {
-            $this->log->consoleLog('No database connection found');
+            $this->log->log('No database connection found', 'console');
         }
 
         $primary_value = $this->session->get('user');
