@@ -46,13 +46,13 @@ class Router
         }
 
         if (is_string($callback)) {
-            return Application::$jinx->view->renderView($callback);
+            return Jinx::$jinx->view->renderView($callback);
         }
 
         // Converts incoming array to an object
         if (is_array($callback)) {
             $controller = new $callback[0]();
-            Application::$jinx->controller = $controller;
+            Jinx::$jinx->controller = $controller;
             $controller->action = $callback[1];
             $callback[0] = $controller;
 

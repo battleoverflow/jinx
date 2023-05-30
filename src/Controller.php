@@ -26,7 +26,7 @@ class Controller
     // Render page content
     public function render($view, $params = [])
     {
-        return Application::$jinx->view->renderView($view, $params);
+        return Jinx::$jinx->view->renderView($view, $params);
     }
 
     public function registerMiddleware(BaseMiddleware $middleware)

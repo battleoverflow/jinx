@@ -10,10 +10,10 @@ namespace Jinx;
 
 use Jinx\Database\DatabaseManager;
 
-class Application
+class Jinx
 {
     public static string $ROOT_DIR;
-    public string $layout = 'main';
+    public string $layout = "main";
     public string $userClass;
     public Router $router;
     public Request $request;
@@ -21,23 +21,23 @@ class Application
     public Session $session;
     public DatabaseManager $db;
     public ?UserModel $user = null;
-    public static Application $jinx;
+    public static Jinx $jinx;
     public ?Controller $controller = null;
     public View $view;
     public Logger $log;
 
-    public function __construct($rootDir, array $db_config)
+    public function __construct($root_dir, array $db_config, string $path)
     {
         $this->userClass = $db_config['userClass']; // Access the userClass key from the config in index.php
 
-        self::$ROOT_DIR = $rootDir;
+        self::$ROOT_DIR = $root_dir;
         self::$jinx = $this;
 
         $this->request  = new Request();
         $this->response = new Response();
         $this->session  = new Session();
         $this->router   = new Router($this->request, $this->response);
-        $this->view     = new View();
+        $this->view     = new View($path);
         $this->log      = new Logger();
 
         try {

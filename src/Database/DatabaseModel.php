@@ -9,7 +9,7 @@
 namespace Jinx\Database;
 
 use Jinx\Model;
-use Jinx\Application;
+use Jinx\Jinx;
 
 abstract class DatabaseModel extends Model
 {
@@ -66,7 +66,7 @@ abstract class DatabaseModel extends Model
             Prepare a SQL statement for execution using the Jinx Framework
         */
         
-        return Application::$jinx->db->prepare($statement);
+        return Jinx::$jinx->db->prepare($statement);
     }
 }
 

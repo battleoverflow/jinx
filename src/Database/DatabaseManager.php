@@ -8,7 +8,7 @@
 
 namespace Jinx\Database;
 
-use Jinx\Application;
+use Jinx\Jinx;
 
 class DatabaseManager
 {
@@ -72,7 +72,7 @@ class DatabaseManager
         $this->creatMigrationsTable();
 
         // Init log
-        $log = Application::$jinx->log;
+        $log = Jinx::$jinx->log;
 
         // Handles the initial migration file
         $applied_migrations = $this->getCompletedMigrations();
@@ -80,7 +80,7 @@ class DatabaseManager
         $new_migrations = [];
 
         // Locates all migration files in the 'migrations' directory
-        $files = scandir(Application::$ROOT_DIR.'/migrations');
+        $files = scandir(Jinx::$ROOT_DIR.'/migrations');
 
         // Compares arrays to check for more migration files
         $apply_migrations = array_diff($files, $applied_migrations);
@@ -91,7 +91,7 @@ class DatabaseManager
                 continue;
             }
 
-            require_once Application::$ROOT_DIR.'/migrations/'.$migration;
+            require_once Jinx::$ROOT_DIR.'/migrations/'.$migration;
 
             // Collects filename without the extension
             $filename = pathinfo($migration, PATHINFO_FILENAME);

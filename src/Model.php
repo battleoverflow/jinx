@@ -89,7 +89,7 @@ abstract class Model
                     $tableName = $className::tableName();
 
                     // Pulls data from the db to check if the provided value is unique
-                    $checkValue = Application::$jinx->db->prepare("SELECT * FROM $tableName WHERE $uniqueAttr = :attr");
+                    $checkValue = Jinx::$jinx->db->prepare("SELECT * FROM $tableName WHERE $uniqueAttr = :attr");
 
                     $checkValue->bindValue(":attr", $value);
                     $checkValue->execute();

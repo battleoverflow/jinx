@@ -10,7 +10,13 @@ namespace Jinx;
 
 class View
 {
-    public string $title = '';
+    public string $title = "";
+    public string $path = "";
+
+    public function __construct(string $path)
+    {
+        $this->path = "/".$path;
+    }
 
     // Renders the view
     public function renderView($view, $params = [])
@@ -35,17 +41,16 @@ class View
     protected function layoutContent()
     {
         // Sets a default layout (no controller present)
-        $layout = Application::$jinx->layout;
+        $layout = Jinx::$jinx->layout;
 
         // If a layout is available from the controller, set it
         // NOTE: This allows a 404 page layout to be seen
-        if (Application::$jinx->controller) {
-            $layout = Application::$jinx->controller->layout;
+        if (Jinx::$jinx->controller) {
+            $layout = Jinx::$jinx->controller->layout;
         }
 
         ob_start();
-        include_once Application::$ROOT_DIR."/views/layouts/$layout.php";
-
+        include_once Jinx::$ROOT_DIR.$this->path."views/layouts/$layout.php";
         return ob_get_clean();
     }
 
@@ -58,7 +63,7 @@ class View
         }
 
         ob_start();
-        include_once Application::$ROOT_DIR."/views/$view.php";
+        include_once Jinx::$ROOT_DIR.$this->path."views/$view.php";
 
         return ob_get_clean();
     }
