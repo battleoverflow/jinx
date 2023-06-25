@@ -41,13 +41,13 @@ class Jinx
         $this->logger   = new Logger();
 
         try {
-            // Pass the info to the database server from the 'db' key
+            // Pass the info to the database server from the "db" key
             $this->db = new DatabaseManager($db_config['db']);
         } catch (\Exception $err) {
             $this->logger->jinxLog("No database connection found", "console");
         }
 
-        $primary_value = $this->session->get('user');
+        $primary_value = $this->session->get("user");
 
         if ($primary_value) {
             $primary_key = $this->userClass::primaryKey();
@@ -72,14 +72,14 @@ class Jinx
         $this->user = $user;
         $primary_key = $user->primaryKey();
         $primary_value = $user->{$primary_key};
-        $this->session->set('user', $primary_value);
+        $this->session->set("user", $primary_value);
         return true;
     }
 
     public function logout()
     {
         $this->user = null;
-        $this->session->remove('user');
+        $this->session->remove("user");
     }
 
     public static function isGuest()
@@ -102,7 +102,7 @@ class Jinx
 
             // Render error page
             echo $this->view->renderView($err_view, [
-                'exception' => $err
+                "exception" => $err
             ]);
         }
     }

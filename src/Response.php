@@ -18,6 +18,6 @@ class Response
 
     public function redirect(string $uriPath)
     {
-        header('Location: '.$uriPath);
+        header("Location: ".$uriPath);
     }
 }

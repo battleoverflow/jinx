@@ -10,7 +10,7 @@ namespace Jinx;
 
 class Session
 {
-    protected const FLASH_KEY = 'flash_messages';
+    protected const FLASH_KEY = "flash_messages";
 
     public function __construct()
     {
@@ -30,8 +30,8 @@ class Session
     {
         // Creates a flash message based on the status of submitted request
         $_SESSION[self::FLASH_KEY][$key] = [
-            'remove' => false,
-            'value' => $message
+            "remove" => false,
+            "value" => $message
         ];
     }
 

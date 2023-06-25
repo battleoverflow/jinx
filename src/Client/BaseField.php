@@ -27,7 +27,7 @@ abstract class BaseField
 
     public function __toString()
     {
-        return sprintf('%s', $this->renderContent());
+        return sprintf("%s", $this->renderContent());
     }
 }
 

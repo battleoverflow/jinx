@@ -17,9 +17,9 @@ class DatabaseManager
     public function __construct(array $db_config = [])
     {
         // Extract database configuration info from the db_config array
-        $db_dsn = $db_config['db_dsn'] ?? '';
-        $db_username = $db_config['db_username'] ?? '';
-        $db_password = $db_config['db_password'] ?? '';
+        $db_dsn = $db_config['db_dsn'] ?? "";
+        $db_username = $db_config['db_username'] ?? "";
+        $db_password = $db_config['db_password'] ?? "";
 
         $this->connect($db_dsn, $db_username, $db_password);
     }
@@ -80,18 +80,18 @@ class DatabaseManager
         $new_migrations = [];
 
         // Locates all migration files in the 'migrations' directory
-        $files = scandir(Jinx::$ROOT_DIR.'/migrations');
+        $files = scandir(Jinx::$ROOT_DIR."/migrations");
 
         // Compares arrays to check for more migration files
         $apply_migrations = array_diff($files, $applied_migrations);
 
         // Iterates over all migration files
         foreach ($apply_migrations as $migration) {
-            if ($migration == '.' || $migration == '..') {
+            if ($migration == "." || $migration == "..") {
                 continue;
             }
 
-            require_once Jinx::$ROOT_DIR.'/migrations/'.$migration;
+            require_once Jinx::$ROOT_DIR."/migrations/".$migration;
 
             // Collects filename without the extension
             $filename = pathinfo($migration, PATHINFO_FILENAME);
@@ -133,7 +133,7 @@ class DatabaseManager
         */
 
         // Creates an array list seperate by commas
-        // Example: ('file_0.php'), ('file_1.php')
+        // Example: ("file_0.php"), ("file_1.php")
         $migrations_arr = implode(",", array_map(fn($m) => "('$m')", $migrations));
 
         $insert_migrations = $this->prepare("INSERT INTO migrations (migration) VALUES $migrations_arr");

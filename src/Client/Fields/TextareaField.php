@@ -16,7 +16,7 @@ class TextareaField extends BaseField
     {
         return sprintf('<textarea name="%s" class="%s">%s</textarea>',
             $this->attribute, // Textarea (name)
-            $this->model->hasError($this->attribute) ? 'border-4 bg-red-500' : '', // Textarea (class)
+            $this->model->hasError($this->attribute) ? "border-4 bg-red-500" : "", // Textarea (class)
             $this->model->{$this->attribute}, // Textarea (content)
         );
     }

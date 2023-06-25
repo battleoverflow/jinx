@@ -14,8 +14,8 @@ class Request
     public function getPath()
     {
         // Retrieves the uri on the root
-        $path = $_SERVER['REQUEST_URI'] ?? '/';
-        $position = strpos($path, '?');
+        $path = $_SERVER['REQUEST_URI'] ?? "/";
+        $position = strpos($path, "?");
 
         // Checks if a query or "?" is present
         if ($position === false) {
@@ -34,13 +34,13 @@ class Request
     public function getMethod()
     {
         // Access the request method (GET)
-        return $this->method() === 'get';
+        return $this->method() === "get";
     }
 
     public function postMethod()
     {
         // Access the request method (POST)
-        return $this->method() === 'post';
+        return $this->method() === "post";
     }
 
     public function getBody()

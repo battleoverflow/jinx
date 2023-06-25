@@ -27,14 +27,14 @@ class View
         // Render layout
         $layoutContent = $this->layoutContent();
 
-        return str_replace('{{content}}', $viewContent, $layoutContent);
+        return str_replace("{{content}}", $viewContent, $layoutContent);
     }
 
     // Render {{content}} string within file
     public function renderContent($viewContent)
     {
         $layoutContent = $this->layoutContent();
-        return str_replace('{{content}}', $viewContent, $layoutContent);
+        return str_replace("{{content}}", $viewContent, $layoutContent);
     }
 
     // Handles the layout file buffer

@@ -10,12 +10,12 @@ namespace Jinx;
 
 abstract class Model
 {
-    public const RULE_REQUIRED = 'required';
-    public const RULE_EMAIL = 'email';
-    public const RULE_MIN = 'min';
-    public const RULE_MAX = 'max';
-    public const RULE_MATCH = 'match';
-    public const RULE_UNIQUE = 'unique';
+    public const RULE_REQUIRED = "required";
+    public const RULE_EMAIL = "email";
+    public const RULE_MIN = "min";
+    public const RULE_MAX = "max";
+    public const RULE_MATCH = "match";
+    public const RULE_UNIQUE = "unique";
 
     public array $errors = [];
 
@@ -124,14 +124,18 @@ abstract class Model
 
     protected function ruleError(string $attribute, string $rule, $params = [])
     {
-        $message = $this->errorMessages()[$rule] ?? '';
+        $logger = Jinx::$jinx->logger;
+        $message = $this->errorMessages()[$rule] ?? "";
         // $params['field'] ??= $attribute;
         // $errorMessages = $this->errorMessages($rule);
 
-        // Replaces values within the error message with the actual data
-        // TODO: Fix bug. Throws weird error on the frontend when the values are empty
-        foreach ($params as $key => $value) {
-            $message = str_replace("{{$key}}", $value, $message);
+        if (gettype($params) === "array") {
+            // Replaces values within the error message with the actual data
+            foreach ($params as $key => $value) {
+                $message = str_replace("{{$key}}", $value, $message);
+            }
+        } else {
+            $logger->jinxLog("Missing data, nothing was submitted", "console");
         }
 
         // Protects us from accidentally submitting data before all requirements are met

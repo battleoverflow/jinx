@@ -23,15 +23,15 @@ class Form
 
     public static function end()
     {
-        echo '</form>';
+        echo "</form>";
     }
 
     public function field(Model $model, $attribute, $class, $field)
     {
         switch ($field) {
-            case 'input':
+            case "input":
                 return new InputField($model, $attribute, $class);
-            case 'label':
+            case "label":
                 return new LabelField($model, $attribute, $class);
         }
 

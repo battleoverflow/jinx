@@ -10,7 +10,7 @@ namespace Jinx\exceptions;
 
 class NotFoundException extends \Exception
 {
-    protected $message = 'Not found';
+    protected $message = "Not found";
     protected $code = 404;
 }
 

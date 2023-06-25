@@ -17,7 +17,7 @@ class LabelField extends BaseField
 
     public function __construct(Model $model, string $attribute, string $class)
     {
-        $this->class = '';
+        $this->class = "";
         parent::__construct($model, $attribute, $class);
     }
 

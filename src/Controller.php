@@ -13,8 +13,8 @@ use Jinx\middleware\BaseMiddleware;
 class Controller
 {
     // Default layout
-    public string $layout = 'main';
-    public string $action = '';
+    public string $layout = "main";
+    public string $action = "";
     protected array $middleware = [];
 
     // Set the file layout
