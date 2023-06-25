@@ -72,7 +72,7 @@ class DatabaseManager
         $this->creatMigrationsTable();
 
         // Init log
-        $log = Jinx::$jinx->log;
+        $logger = Jinx::$jinx->logger;
 
         // Handles the initial migration file
         $applied_migrations = $this->getCompletedMigrations();
@@ -98,10 +98,10 @@ class DatabaseManager
 
             $instance = new $filename();
             
-            $log->log("Applying migration $migration", "terminal");
+            $logger->jinxLog("Applying migration $migration", "terminal");
             $instance->up();
             
-            $log->log("Applied migration $migration", "terminal");
+            $logger->jinxLog("Applied migration $migration", "terminal");
             $new_migrations[] = $migration;
         }
 
@@ -109,7 +109,7 @@ class DatabaseManager
         if (!empty($new_migrations)) {
             $this->insertMigrations($new_migrations);
         } else {
-            $log->log("All migrations are complete", "terminal");
+            $logger->jinxLog("All migrations are complete", "terminal");
         }
     }
 

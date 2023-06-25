@@ -10,7 +10,7 @@ namespace Jinx;
 
 class Logger
 {
-    public function log(string $message, string $dest)
+    public function jinxLog(string $message, string $dest)
     {
         /*
             Log message to specific destination
@@ -19,15 +19,18 @@ class Logger
         switch ($dest) {
             case "terminal":
                 echo '['.date('Y-m-d H:i:s').'] '.$message.PHP_EOL;
+                break;
             case "console":
                 if (is_array($message)) {
                     $message = implode(',', $message);
                 }
 
                 echo "<script>console.log('[".date('Y-m-d H:i:s')."] ".$message."');</script>";
+                break;
             case "all":
                 echo "[".date('Y-m-d H:i:s')."] ".$message.PHP_EOL;
                 echo "<script>console.log('[".date('Y-m-d H:i:s')."] ".$message."');</script>";
+                break;
         }
     }
 }

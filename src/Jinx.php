@@ -24,7 +24,7 @@ class Jinx
     public static Jinx $jinx;
     public ?Controller $controller = null;
     public View $view;
-    public Logger $log;
+    public Logger $logger;
 
     public function __construct($root_dir, array $db_config, string $path)
     {
@@ -38,13 +38,13 @@ class Jinx
         $this->session  = new Session();
         $this->router   = new Router($this->request, $this->response);
         $this->view     = new View($path);
-        $this->log      = new Logger();
+        $this->logger   = new Logger();
 
         try {
             // Pass the info to the database server from the 'db' key
             $this->db = new DatabaseManager($db_config['db']);
         } catch (\Exception $err) {
-            $this->log->log('No database connection found', 'console');
+            $this->logger->jinxLog("No database connection found", "console");
         }
 
         $primary_value = $this->session->get('user');
