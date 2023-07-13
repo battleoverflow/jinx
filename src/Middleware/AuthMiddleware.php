@@ -6,10 +6,10 @@
     Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
 */
 
-namespace Jinx\middleware;
+namespace Jinx\Middleware;
 
 use Jinx\Jinx;
-use Jinx\exceptions\ForbiddenException;
+use Jinx\Exceptions\ForbiddenException;
 
 class AuthMiddleware extends BaseMiddleware
 {

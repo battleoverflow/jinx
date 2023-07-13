@@ -6,7 +6,7 @@
     Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
 */
 
-namespace Jinx\exceptions;
+namespace Jinx\Exceptions;
 
 class NotFoundException extends \Exception
 {

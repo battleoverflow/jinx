@@ -8,7 +8,7 @@
 
 namespace Jinx;
 
-use Jinx\Database\DatabaseManager;
+use Jinx\ORM\Cloud;
 
 class Jinx
 {
@@ -19,7 +19,7 @@ class Jinx
     public Request $request;
     public Response $response;
     public Session $session;
-    public DatabaseManager $db;
+    public Cloud $db;
     public ?UserModel $user = null;
     public static Jinx $jinx;
     public ?Controller $controller = null;
@@ -42,7 +42,7 @@ class Jinx
 
         try {
             // Pass the info to the database server from the "db" key
-            $this->db = new DatabaseManager($db_config['db']);
+            $this->db = new Cloud($db_config['db']);
         } catch (\Exception $err) {
             $this->logger->jinxLog("No database connection found", "console");
         }

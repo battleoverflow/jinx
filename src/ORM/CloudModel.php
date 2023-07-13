@@ -1,17 +1,16 @@
 <?php
 /*
     Project: Jinx Framework (https://github.com/azazelm3dj3d/jinx)
-    License: BSD 2-Clause
-
     Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    License: BSD 2-Clause
 */
 
-namespace Jinx\Database;
+namespace Jinx\ORM;
 
 use Jinx\Model;
 use Jinx\Jinx;
 
-abstract class DatabaseModel extends Model
+abstract class CloudModel extends Model
 {
 
     abstract public static function tableName(): string;

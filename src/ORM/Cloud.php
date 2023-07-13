@@ -6,11 +6,11 @@
     Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
 */
 
-namespace Jinx\Database;
+namespace Jinx\ORM;
 
 use Jinx\Jinx;
 
-class DatabaseManager
+class Cloud
 {
     public \PDO $pdo_handler;
 

@@ -8,9 +8,9 @@
 
 namespace Jinx;
 
-use Jinx\Database\DatabaseModel;
+use Jinx\ORM\CloudModel;
 
-abstract class UserModel extends DatabaseModel
+abstract class UserModel extends CloudModel
 {
     abstract public function getUserName(): string;
 }
