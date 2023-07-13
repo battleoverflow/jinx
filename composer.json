@@ -1,7 +1,7 @@
 {
     "name": "azazelm3dj3d/jinx",
     "description": "Jinx: The Unlucky Framework",
-    "keywords": ["jinx", "framework"],
+    "keywords": ["jinx", "framework", "azazelm3dj3d"],
     "type": "library",
     "license": "BSD-2-Clause",
     "homepage": "https://azazelm3dj3d.com",
@@ -17,7 +17,7 @@
     "authors": [
         {
             "name": "azazelm3dj3d",
-            "email": "trevor@azazelm3dj3d.com"
+            "email": "info@azazelm3dj3d.com"
         }
     ],
     "require": {}

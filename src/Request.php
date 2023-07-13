@@ -1,18 +1,15 @@
 <?php
 /*
     Project: Jinx Framework (https://github.com/azazelm3dj3d/jinx)
-    License: BSD 2-Clause
-
     Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    License: BSD 2-Clause
 */
 
 namespace Jinx;
 
-class Request
-{
+class Request {
 
-    public function getPath()
-    {
+    public function getPath() {
         // Retrieves the uri on the root
         $path = $_SERVER['REQUEST_URI'] ?? "/";
         $position = strpos($path, "?");
@@ -25,26 +22,22 @@ class Request
         return substr($path, 0, $position);
     }
 
-    public function method()
-    {
+    public function method() {
         // Manage the request method
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
 
-    public function getMethod()
-    {
+    public function getMethod() {
         // Access the request method (GET)
         return $this->method() === "get";
     }
 
-    public function postMethod()
-    {
+    public function postMethod() {
         // Access the request method (POST)
         return $this->method() === "post";
     }
 
-    public function getBody()
-    {
+    public function getBody() {
         $body = [];
 
         // Sanatize GET request

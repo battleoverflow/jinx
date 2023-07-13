@@ -10,15 +10,12 @@ namespace Jinx\ORM;
 use Jinx\Model;
 use Jinx\Jinx;
 
-abstract class CloudModel extends Model
-{
-
+abstract class CloudModel extends Model {
     abstract public static function tableName(): string;
     abstract public function attributes(): array;
     abstract public static function primaryKey(): string;
 
-    public function save()
-    {
+    public function save() {
         /*
             Insert data into spcific table
         */
@@ -38,8 +35,7 @@ abstract class CloudModel extends Model
     }
 
     // $user_data = [email => email@email.com, firstname => John]
-    public static function findUser($user_data)
-    {
+    public static function findUser($user_data) {
         $table_name = static::tableName();
         $attributes = array_keys($user_data);
 
@@ -59,8 +55,7 @@ abstract class CloudModel extends Model
         return $statement->fetchObject(static::class);
     }
 
-    public static function prepare($statement)
-    {
+    public static function prepare($statement) {
         /*
             Prepare a SQL statement for execution using the Jinx Framework
         */

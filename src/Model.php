@@ -1,15 +1,13 @@
 <?php
 /*
     Project: Jinx Framework (https://github.com/azazelm3dj3d/jinx)
-    License: BSD 2-Clause
-
     Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    License: BSD 2-Clause
 */
 
 namespace Jinx;
 
-abstract class Model
-{
+abstract class Model {
     public const RULE_REQUIRED = "required";
     public const RULE_EMAIL = "email";
     public const RULE_MIN = "min";
@@ -20,8 +18,7 @@ abstract class Model
     public array $errors = [];
 
     // Iterates over the ingested data to set a new value
-    public function loadData($data)
-    {
+    public function loadData($data) {
         foreach ($data as $key => $value) {
             if (property_exists($this, $key)) {
                 $this->{$key} = $value;
@@ -29,24 +26,20 @@ abstract class Model
         }   
     }
 
-    public function rules(): array
-    {
+    public function rules(): array {
         return [];
     }
 
-    public function labels(): array
-    {
+    public function labels(): array {
         return [];
     }
 
-    public function getLabel($attribute)
-    {
+    public function getLabel($attribute) {
         // Returns the label name, not the the label default (reference: jinx\model\user\labels())
         return $this->labels()[$attribute] ?? $attribute;
     }
 
-    public function validate()
-    {
+    public function validate() {
         foreach ($this->rules() as $attribute => $rules) {
             $value = $this->{$attribute};
 
@@ -109,8 +102,7 @@ abstract class Model
         return empty($this->errors);
     }
 
-    public function errorMessages()
-    {
+    public function errorMessages() {
         // Constants for error messages
         return [
             self::RULE_REQUIRED => "This field is required",
@@ -122,8 +114,7 @@ abstract class Model
         ];
     }
 
-    protected function ruleError(string $attribute, string $rule, $params = [])
-    {
+    protected function ruleError(string $attribute, string $rule, $params = []) {
         $logger = Jinx::$jinx->logger;
         $message = $this->errorMessages()[$rule] ?? "";
         // $params['field'] ??= $attribute;
@@ -142,21 +133,18 @@ abstract class Model
         $this->errors[$attribute][] = $message;
     }
 
-    public function addError(string $attribute, string $message)
-    {
+    public function addError(string $attribute, string $message) {
         // Protects us from accidentally submitting data before all requirements are met
         $this->errors[$attribute][] = $message;
     }
 
     // Checks if an error exists and returns a boolean
-    public function hasError($attribute)
-    {
+    public function hasError($attribute) {
         return $this->errors[$attribute] ?? false;
     }
 
     // Collects the first error in the array and returns a boolean
-    public function getFirstError($attribute)
-    {
+    public function getFirstError($attribute) {
         return $this->errors[$attribute][0] ?? false;
     }
 }

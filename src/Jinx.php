@@ -1,17 +1,15 @@
 <?php
 /*
     Project: Jinx Framework (https://github.com/azazelm3dj3d/jinx)
-    License: BSD 2-Clause
-
     Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    License: BSD 2-Clause
 */
 
 namespace Jinx;
 
 use Jinx\ORM\Cloud;
 
-class Jinx
-{
+class Jinx {
     public static string $ROOT_DIR;
     public string $layout = "main";
     public string $userClass;
@@ -26,8 +24,7 @@ class Jinx
     public View $view;
     public Logger $logger;
 
-    public function __construct($root_dir, array $db_config, string $path)
-    {
+    public function __construct($root_dir, array $db_config, string $path) {
         $this->userClass = $db_config['userClass']; // Access the userClass key from the config in index.php
 
         self::$ROOT_DIR = $root_dir;
@@ -57,18 +54,15 @@ class Jinx
         }
     }
 
-    public function getController(): Controller
-    {
+    public function getController(): Controller {
         return $this->controller;
     }
 
-    public function setController(Controller $controller): void
-    {
+    public function setController(Controller $controller): void {
         $this->controller = $controller;
     }
 
-    public function login(UserModel $user)
-    {
+    public function login(UserModel $user) {
         $this->user = $user;
         $primary_key = $user->primaryKey();
         $primary_value = $user->{$primary_key};
@@ -76,20 +70,17 @@ class Jinx
         return true;
     }
 
-    public function logout()
-    {
+    public function logout() {
         $this->user = null;
         $this->session->remove("user");
     }
 
-    public static function isGuest()
-    {
+    public static function isGuest() {
         // Returns false is no one is logged in
         return !self::$jinx->user;
     }
 
-    public function run(string $err_view = "_error")
-    {
+    public function run(string $err_view = "_error") {
         /*
             The primary function for the Jinx Framework
 

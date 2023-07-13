@@ -1,21 +1,18 @@
 <?php
 /*
     Project: Jinx Framework (https://github.com/azazelm3dj3d/jinx)
-    License: BSD 2-Clause
-
     Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    License: BSD 2-Clause
 */
 
 namespace Jinx\ORM;
 
 use Jinx\Jinx;
 
-class Cloud
-{
+class Cloud {
     public \PDO $pdo_handler;
 
-    public function __construct(array $db_config = [])
-    {
+    public function __construct(array $db_config = []) {
         // Extract database configuration info from the db_config array
         $db_dsn = $db_config['db_dsn'] ?? "";
         $db_username = $db_config['db_username'] ?? "";
@@ -24,8 +21,7 @@ class Cloud
         $this->connect($db_dsn, $db_username, $db_password);
     }
 
-    public function connect($db_dsn, $db_username, $db_password)
-    {
+    public function connect($db_dsn, $db_username, $db_password) {
         // Initialize a new database connection with the provided data
         $this->pdo_handler = new \PDO($db_dsn, $db_username, $db_password);
 
@@ -33,20 +29,17 @@ class Cloud
         $this->pdo_handler->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
-    public function execute($statement)
-    {
+    public function execute($statement) {
         $this->pdo_handler->exec($statement);
     }
 
-    public function prepare($statement)
-    {
+    public function prepare($statement) {
         return $this->pdo_handler->prepare($statement);
     }
 
     /* Migrations */
 
-    public function creatMigrationsTable()
-    {
+    public function creatMigrationsTable() {
         /*
             Create the migrations table in the database using SQL syntax
         */
@@ -63,8 +56,7 @@ class Cloud
         $this->execute($create_table);
     }
 
-    public function applyMigrations()
-    {
+    public function applyMigrations() {
         /*
             Applies migrations
         */
@@ -92,14 +84,10 @@ class Cloud
             }
 
             require_once Jinx::$ROOT_DIR."/migrations/".$migration;
-
-            // Collects filename without the extension
-            $filename = pathinfo($migration, PATHINFO_FILENAME);
-
-            $instance = new $filename();
             
             $logger->jinxLog("Applying migration $migration", "terminal");
-            $instance->up();
+            $sql_query = Jinx::$jinx->db->prepare(file_get_contents(Jinx::$ROOT_DIR."/migrations/".$migration));
+            $sql_query->execute();
             
             $logger->jinxLog("Applied migration $migration", "terminal");
             $new_migrations[] = $migration;
@@ -109,12 +97,11 @@ class Cloud
         if (!empty($new_migrations)) {
             $this->insertMigrations($new_migrations);
         } else {
-            $logger->jinxLog("All migrations are complete", "terminal");
+            $logger->jinxLog("All migrations are already applied", "terminal");
         }
     }
 
-    public function getCompletedMigrations()
-    {
+    public function getCompletedMigrations() {
         /*
             Collect all migrations currently present in the database
         */
@@ -126,8 +113,7 @@ class Cloud
         return $fetch_migrations->fetchAll(\PDO::FETCH_COLUMN);
     }
 
-    public function insertMigrations(array $migrations)
-    {
+    public function insertMigrations(array $migrations) {
         /*
             Insert missing migrations into the database
         */

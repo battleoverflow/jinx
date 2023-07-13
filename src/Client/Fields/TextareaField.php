@@ -1,19 +1,16 @@
 <?php
 /*
     Project: Jinx Framework (https://github.com/azazelm3dj3d/jinx)
-    License: BSD 2-Clause
-
     Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    License: BSD 2-Clause
 */
 
 namespace Jinx\Client\Fields;
 
 use Jinx\Client\BaseField;
 
-class TextareaField extends BaseField
-{
-    public function renderContent(): string
-    {
+class TextareaField extends BaseField {
+    public function renderContent(): string {
         return sprintf('<textarea name="%s" class="%s">%s</textarea>',
             $this->attribute, // Textarea (name)
             $this->model->hasError($this->attribute) ? "border-4 bg-red-500" : "", // Textarea (class)

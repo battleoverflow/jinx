@@ -1,17 +1,14 @@
 <?php
 /*
     Project: Jinx Framework (https://github.com/azazelm3dj3d/jinx)
-    License: BSD 2-Clause
-
     Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    License: BSD 2-Clause
 */
 
 namespace Jinx;
 
-class Logger
-{
-    public function jinxLog(string $message, string $dest)
-    {
+class Logger {
+    public function jinxLog(string $message, string $dest) {
         /*
             Log message to specific destination
         */
