@@ -1,9 +1,9 @@
 <?php
 /*
-    Project: Jinx Framework (https://github.com/azazelm3dj3d/jinx)
+    Project: Jinx Framework (https://github.com/battleoverflow/jinx)
     License: BSD 2-Clause
 
-    Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    Author: battleoverflow (https://github.com/battleoverflow)
 */
 
 namespace Jinx\Database;
@@ -11,15 +11,13 @@ namespace Jinx\Database;
 use Jinx\Model;
 use Jinx\Application;
 
-abstract class DatabaseModel extends Model
-{
+abstract class DatabaseModel extends Model {
 
     abstract public static function tableName(): string;
     abstract public function attributes(): array;
     abstract public static function primaryKey(): string;
 
-    public function save()
-    {
+    public function save() {
         /*
             Insert data into spcific table
         */
@@ -39,8 +37,7 @@ abstract class DatabaseModel extends Model
     }
 
     // $user_data = [email => email@email.com, firstname => John]
-    public static function findUser($user_data)
-    {
+    public static function findUser($user_data) {
         $table_name = static::tableName();
         $attributes = array_keys($user_data);
 
@@ -60,8 +57,7 @@ abstract class DatabaseModel extends Model
         return $statement->fetchObject(static::class);
     }
 
-    public static function prepare($statement)
-    {
+    public static function prepare($statement) {
         /*
             Prepare a SQL statement for execution using the Jinx Framework
         */

@@ -1,17 +1,16 @@
 <?php
 /*
-    Project: Jinx Framework (https://github.com/azazelm3dj3d/jinx)
+    Project: Jinx Framework (https://github.com/battleoverflow/jinx)
     License: BSD 2-Clause
 
-    Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    Author: battleoverflow (https://github.com/battleoverflow)
 */
 
 namespace Jinx;
 
 use Jinx\Database\DatabaseModel;
 
-abstract class UserModel extends DatabaseModel
-{
+abstract class UserModel extends DatabaseModel {
     abstract public function getUserName(): string;
 }
 

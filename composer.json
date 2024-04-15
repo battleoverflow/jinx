@@ -1,13 +1,12 @@
 {
-    "name": "azazelm3dj3d/jinx",
+    "name": "battleoverflow/jinx",
     "description": "Jinx: The Unlucky Framework",
     "keywords": ["jinx", "framework"],
     "type": "library",
     "license": "BSD-2-Clause",
-    "homepage": "https://azazelm3dj3d.com",
     "support": {
-        "issues": "https://github.com/azazelm3dj3d/jinx/issues",
-        "source": "https://github.com/azazelm3dj3d/jinx"
+        "issues": "https://github.com/battleoverflow/jinx/issues",
+        "source": "https://github.com/battleoverflow/jinx"
     },
     "autoload": {
         "psr-4": {
@@ -16,8 +15,7 @@
     },
     "authors": [
         {
-            "name": "azazelm3dj3d",
-            "email": "trevor@azazelm3dj3d.com"
+            "name": "battleoverflow"
         }
     ],
     "require": {}

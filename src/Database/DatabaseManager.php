@@ -1,21 +1,19 @@
 <?php
 /*
-    Project: Jinx Framework (https://github.com/azazelm3dj3d/jinx)
+    Project: Jinx Framework (https://github.com/battleoverflow/jinx)
     License: BSD 2-Clause
 
-    Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    Author: battleoverflow (https://github.com/battleoverflow)
 */
 
 namespace Jinx\Database;
 
 use Jinx\Application;
 
-class DatabaseManager
-{
+class DatabaseManager {
     public \PDO $pdo_handler;
 
-    public function __construct(array $db_config = [])
-    {
+    public function __construct(array $db_config = []) {
         // Extract database configuration info from the db_config array
         $db_dsn = $db_config['db_dsn'] ?? '';
         $db_username = $db_config['db_username'] ?? '';
@@ -24,8 +22,7 @@ class DatabaseManager
         $this->connect($db_dsn, $db_username, $db_password);
     }
 
-    public function connect($db_dsn, $db_username, $db_password)
-    {
+    public function connect($db_dsn, $db_username, $db_password) {
         // Initialize a new database connection with the provided data
         $this->pdo_handler = new \PDO($db_dsn, $db_username, $db_password);
 
@@ -33,20 +30,17 @@ class DatabaseManager
         $this->pdo_handler->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
-    public function execute($statement)
-    {
+    public function execute($statement) {
         $this->pdo_handler->exec($statement);
     }
 
-    public function prepare($statement)
-    {
+    public function prepare($statement) {
         return $this->pdo_handler->prepare($statement);
     }
 
     /* Migrations */
 
-    public function creatMigrationsTable()
-    {
+    public function creatMigrationsTable() {
         /*
             Create the migrations table in the database using SQL syntax
         */
@@ -63,8 +57,7 @@ class DatabaseManager
         $this->execute($create_table);
     }
 
-    public function applyMigrations()
-    {
+    public function applyMigrations() {
         /*
             Applies migrations
         */
@@ -113,8 +106,7 @@ class DatabaseManager
         }
     }
 
-    public function getCompletedMigrations()
-    {
+    public function getCompletedMigrations() {
         /*
             Collect all migrations currently present in the database
         */
@@ -126,8 +118,7 @@ class DatabaseManager
         return $fetch_migrations->fetchAll(\PDO::FETCH_COLUMN);
     }
 
-    public function insertMigrations(array $migrations)
-    {
+    public function insertMigrations(array $migrations) {
         /*
             Insert missing migrations into the database
         */

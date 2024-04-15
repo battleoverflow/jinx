@@ -1,20 +1,18 @@
 <?php
 /*
-    Project: Jinx Framework (https://github.com/azazelm3dj3d/jinx)
+    Project: Jinx Framework (https://github.com/battleoverflow/jinx)
     License: BSD 2-Clause
 
-    Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    Author: battleoverflow (https://github.com/battleoverflow)
 */
 
 namespace Jinx;
 
-class View
-{
+class View {
     public string $title = '';
 
     // Renders the view
-    public function renderView($view, $params = [])
-    {
+    public function renderView($view, $params = []) {
         // Render view before layout to load <head> content
         $viewContent = $this->renderOnlyView($view, $params);
 
@@ -25,15 +23,13 @@ class View
     }
 
     // Render {{content}} string within file
-    public function renderContent($viewContent)
-    {
+    public function renderContent($viewContent) {
         $layoutContent = $this->layoutContent();
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
     // Handles the layout file buffer
-    protected function layoutContent()
-    {
+    protected function layoutContent() {
         // Sets a default layout (no controller present)
         $layout = Application::$jinx->layout;
 
@@ -50,8 +46,7 @@ class View
     }
 
     // Renders the correct view based on path
-    protected function renderOnlyView($view, $params = [])
-    {
+    protected function renderOnlyView($view, $params = []) {
         // Iterates over the params array to locate all available key/value pairs
         foreach ($params as $key => $value) {
             $$key = $value;

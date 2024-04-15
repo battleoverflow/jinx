@@ -1,41 +1,36 @@
 <?php
 /*
-    Project: Jinx Framework (https://github.com/azazelm3dj3d/jinx)
+    Project: Jinx Framework (https://github.com/battleoverflow/jinx)
     License: BSD 2-Clause
 
-    Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    Author: battleoverflow (https://github.com/battleoverflow)
 */
 
 namespace Jinx;
 
 use Jinx\exceptions\NotFoundException;
 
-class Router
-{
+class Router {
     public Request $request;
     public Response $response;
     protected array $routes = [];
 
-    public function __construct(Request $request, Response $response)
-    {
+    public function __construct(Request $request, Response $response) {
         $this->request = $request;
         $this->response = $response;
     }
 
     // GET method
-    public function get($path, $callback)
-    {
+    public function get($path, $callback) {
         $this->routes['get'][$path] = $callback;
     }
 
     // POST method
-    public function post($path, $callback)
-    {
+    public function post($path, $callback) {
         $this->routes['post'][$path] = $callback;
     }
 
-    public function resolve()
-    {
+    public function resolve() {
         $path = $this->request->getPath();
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
